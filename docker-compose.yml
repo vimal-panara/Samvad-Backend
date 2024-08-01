@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: golang_samvad
+    image: golang:1.22.5-bookworm
+    entrypoint: ["sleep", "infinity"]
+    # command: |
+    #   export GOINSECURE=github.com/* &&
+    #   export GOPRIVATE=github.com/* &&
+    #   export GOPROXY=direct &&
+    #   tail -f /dev/null
+    ports:
+      - "3000:3000"
+      - "5000:5000"
+      - "5001:5001"
+      - "4000:4000"
+    volumes:
+      - .:/app
+    networks:
+      - go-network
+
+networks:
+  go-network:
+    driver: bridge
+
+# volumes:
+#   GoCode:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: ./localCode
