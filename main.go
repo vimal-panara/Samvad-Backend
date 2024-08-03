@@ -15,6 +15,7 @@ func main() {
 
 	http.HandleFunc("/create", server.CreateRoomRequestHandler)
 	http.HandleFunc("/join", server.JoinRoomRequestHandler)
+	http.HandleFunc("/delete", server.DeleteRoomHandle)
 
 	log.Print("starting server on port 8000")
 

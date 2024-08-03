@@ -86,3 +86,22 @@ func JoinRoomRequestHandler(w http.ResponseWriter, r *http.Request) {
 		broadcast <- msg
 	}
 }
+
+func DeleteRoomHandle(w http.ResponseWriter, r *http.Request) {
+	roomId, ok := r.URL.Query()["roomId"]
+	if !ok {
+		log.Print("RoomId is missing in the parameter")
+		return
+	}
+	log.Print(roomId)
+
+	AllRooms.DeleteRoom(roomId[0])
+
+	type resp struct {
+		RoomId string `json:"room_id"`
+	}
+
+	fmt.Println(AllRooms.Map)
+
+	json.NewEncoder(w).Encode(resp{RoomId: roomId[0]})
+}
