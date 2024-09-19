@@ -12,7 +12,7 @@ import (
 var AllRooms RoomMap
 
 func CreateRoomRequestHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	roomId := AllRooms.CreateRoom()
 
 	type resp struct {
@@ -55,6 +55,7 @@ func broadcaster() {
 }
 
 func JoinRoomRequestHandler(w http.ResponseWriter, r *http.Request) {
+
 	roomId, ok := r.URL.Query()["roomId"]
 	if !ok {
 		log.Print("RoomId is missing in the parameter")
@@ -88,6 +89,7 @@ func JoinRoomRequestHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteRoomHandle(w http.ResponseWriter, r *http.Request) {
+
 	roomId, ok := r.URL.Query()["roomId"]
 	if !ok {
 		log.Print("RoomId is missing in the parameter")
